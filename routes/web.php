@@ -36,3 +36,6 @@ Route::resource('users', 'UsersController');
 Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
+
+//也即是说，当我们访问 /users/1/edit 页面时，编辑的是 id 为 1 的用户资料。
+Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
