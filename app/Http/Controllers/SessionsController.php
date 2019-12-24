@@ -29,8 +29,8 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
 
-        //  Laravel 提供的 Auth 的 attempt 方法可以让我们很方便的完成用户的身份认证操作
-        if (Auth::attempt($credentials)) {
+        //  Auth::attempt() 方法可接收两个参数，第一个参数为需要进行用户身份认证的数组，第二个参数为是否为用户开启『记住我』功能的布尔值。
+        if (Auth::attempt($credentials,$request->has('remember'))) {
             // 登录成功后的相关操作
             session()->flash('success', '欢迎回来！');
             return redirect()->route('users.show', [Auth::user()]);
